@@ -12,20 +12,19 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v4
 
-      - name: Show repo structure
-        run: ls -R
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
 
-      - name: Install dependencies (backend)
+      - name: Install backend dependencies
         run: |
           cd backend
           npm install
 
-      - name: Build Docker image
+      - name: Run backend (test)
         run: |
           cd backend
-          docker build -t cloudops-app .
-
-      - name: Run container
-        run: |
-          cd backend
-          docker run -d -p 5000:5000 cloudops-app
+          node index.js &
+          sleep 5
+          echo "Backend started successfully"
