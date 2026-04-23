@@ -12,17 +12,20 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v4
 
-      - name: List files (debug)
-        run: ls -la
+      - name: Show repo structure
+        run: ls -R
 
-      - name: Move to backend
-        run: cd backend && ls -la
-
-      - name: Install dependencies
-        run: cd backend && npm install
+      - name: Install dependencies (backend)
+        run: |
+          cd backend
+          npm install
 
       - name: Build Docker image
-        run: cd backend && docker build -t cloudops-app .
+        run: |
+          cd backend
+          docker build -t cloudops-app .
 
       - name: Run container
-        run: cd backend && docker run -d -p 5000:5000 cloudops-app
+        run: |
+          cd backend
+          docker run -d -p 5000:5000 cloudops-app
