@@ -25,4 +25,4 @@ npm run dev
 
 ## Note
 
-This is a UI + architecture prototype. Real deployment pipeline not integrated yet.
+This is a UI + architecture prototype. Real deployment pipeline is not integrated yet.
